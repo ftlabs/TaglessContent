@@ -1,13 +1,13 @@
 package main
 
 import (
-	"regexp"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/kennygrant/sanitize"
 	"net/http"
 	"net/url"
-	"errors"
-	"encoding/json"
-	"github.com/kennygrant/sanitize"
-	"fmt"
+	"regexp"
 )
 
 var UUIDRegexp = regexp.MustCompile("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
@@ -17,9 +17,9 @@ type stripTagsService interface {
 }
 
 type stripTagsServiceImpl struct {
-	apiKey string
+	apiKey      string
 	contentAddr url.URL
-	token string
+	token       string
 }
 
 func newStripTagsService(apiKey string, contentAddr url.URL, token string) stripTagsService {
@@ -58,5 +58,3 @@ func getContent(contentAddr url.URL, apiKey string, uuid string) (string, error,
 	}
 	return contentStruct.BodyXml, nil, resp.StatusCode
 }
-
-

@@ -1,0 +1,43 @@
+{
+	"ImportPath": "github.com/Financial-Times/TaglessContent",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v75",
+	"Deps": [
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.10.0-38-g3ec0642",
+			"Rev": "3ec0642a7fb6488f65b06f9040adc67e3990296a"
+		},
+		{
+			"ImportPath": "github.com/gorilla/handlers",
+			"Comment": "v1.1-11-ga577578",
+			"Rev": "a5775781a543af3c6b9f5baf10995e4d14168950"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.1-27-g757bef9",
+			"Rev": "757bef944d0f21880861c2dd9c871ca543023cba"
+		},
+		{
+			"ImportPath": "github.com/jawher/mow.cli",
+			"Rev": "660b9261e2c80bb92e5a0eaa581596084656140e"
+		},
+		{
+			"ImportPath": "github.com/kennygrant/sanitize",
+			"Comment": "v1.1",
+			"Rev": "7fdd72ab580907c39c5f0b8b98b8d89e5476f424"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "ffe101cce3477a6c6d8f0754d103bb0a84ec1266"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "ffe101cce3477a6c6d8f0754d103bb0a84ec1266"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "478fcf54317e52ab69f40bb4c7a1520288d7f7ea"
+		}
+	]
+}

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/jawher/mow.cli"
 	log "github.com/Sirupsen/logrus"
-	"github.com/gorilla/mux"
 	"github.com/gorilla/handlers"
-	"net/url"
+	"github.com/gorilla/mux"
+	"github.com/jawher/mow.cli"
 	"net/http"
+	"net/url"
 	"os"
 )
 
@@ -51,7 +51,7 @@ func main() {
 		m.HandleFunc("/strip", h.putHandler).Methods("PUT")
 
 		log.Infof("Listening on [%v]", *port)
-		http.ListenAndServe(":" + *port, nil)
+		http.ListenAndServe(":"+*port, nil)
 	}
 	app.Run(os.Args)
 
