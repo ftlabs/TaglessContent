@@ -8,9 +8,12 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"strings"
 )
 
 var UUIDRegexp = regexp.MustCompile("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
+var openPullQuote string = "<pull-quote>"
+var closePullQuote string = "</pull-quote>"
 
 type stripTagsService interface {
 	stripTagsFromContent(thing interface{}) (string, error, int)
@@ -39,6 +42,9 @@ func (sc *stripTagsServiceImpl) stripTagsFromContent(thing interface{}) (string,
 	if err != nil {
 		return "", err, status
 	}
+	if strings.Contains(contentWithTags, openPullQuote) {
+		contentWithTags = stripPullQuotes(contentWithTags)
+	}
 	contentNoTags := sanitize.HTML(contentWithTags)
 	return contentNoTags, nil, status
 }
@@ -57,4 +63,17 @@ func getContent(contentAddr url.URL, apiKey string, uuid string) (string, error,
 		return contentStruct.BodyXml, errors.New("Content with id " + uuid + " not found."), resp.StatusCode
 	}
 	return contentStruct.BodyXml, nil, resp.StatusCode
+}
+
+func stripPullQuotes(content string) string {
+	count := strings.Count(content, openPullQuote)
+	for strings.Contains(content, openPullQuote) == true {
+		left := strings.SplitN(content, openPullQuote, 2)
+		right := strings.SplitN(left[1], closePullQuote, 2)
+
+		//strips first <pull-quote> text </pull-quote> it finds
+		content = left[0] + right[1]
+		count--
+	}
+	return content
 }
